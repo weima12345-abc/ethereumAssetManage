@@ -1,0 +1,8 @@
+
+1. 将sol文件转化为ABI 文件
+
+solc --abi ManageSystem.sol -o build/
+
+2. 在终端中执行以下命令，将 ABI 文件转化为 Go 语言文件：
+
+abigen --abi AssetManagement.abi --pkg main --out ManageSystem.go

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>资产管理</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="../static/css/uniform.css"/>
+    <link rel="stylesheet" href="../static/css/select2.css"/>
+    <link rel="stylesheet" href="../static/css/matrix-style.css"/>
+    <link rel="stylesheet" href="../static/css/matrix-media.css"/>
+    <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="../static/css/iconfont.css">
+    <link rel="stylesheet" href="../static/css/modal.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">资产管理系统</a></h1>
+</div>
+<!--close-Header-part-->
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
+                                                      data-target="#profile-messages" class="dropdown-toggle"><i
+                class="icon icon-user"></i> <span class="text" id="admin"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/login"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+
+        <li class=""><a title="" href="/login"><i class="icon icon-share-alt"></i> <span
+                class="text">退出</span></a></li>
+    </ul>
+</div>
+
+
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
+    <ul id="role">
+        <!--        <li><a href="/index"><i class="icon icon-home"></i> <span>首页</span></a></li>-->
+        <!--        <li><a href="charts.html"><i class="icon icon-signal"></i> <span>图表统计</span></a></li>-->
+        <!--        <li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>插件</span></a></li>-->
+        <li class="active"><a href="/table"><i class="icon icon-th"></i> <span>资产后台管理</span></a></li>
+        <li><a href="/assetLedger"><i class="icon icon-share-alt"></i> <span>资产台账</span></a></li>
+        <li><a href="/assetManage"><i class="icon icon-share-alt"></i> <span>资产领用与归还</span></a></li>
+        <li><a href="/login"><i class="icon icon-share-alt"></i> <span>退出</span></a></li>
+
+        </li>
+
+    </ul>
+</div>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a
+                href="#" class="current">资产领用与归还</a></div>
+        <h1>资产领用与归还</h1>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-th"></i> </span>
+                        <h5>库存资产情况</h5>
+                        <span class="label label-info">Featured</span></div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>资产序号</th>
+                                <th>资产名称</th>
+                                <th>资产描述</th>
+                                <th>拥有人</th>
+                                <th>操作</th>
+
+                            </tr>
+                            </thead>
+                            <tbody class="viewStock">
+                            <!--                            <tr>-->
+                            <!--                                <td>1</td>-->
+                            <!--                                <td>steave</td>-->
+                            <!--                                <td>marki</td>-->
+
+                            <!--                            </tr>-->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.<a target="_blank"
+                                                                                              href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+    </div>
+</div>
+<!--end-Footer-part-->
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script src="../static/js/web3.min.js"></script>
+<script src="../static/js/jquery.ui.custom.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.uniform.js"></script>
+<script src="../static/js/select2.min.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/matrix.js"></script>
+<!--<script src="../static/js/contractJs/table.js"></script>-->
+
+<script type="text/javascript" src="../static/js/modal.js"></script>
+<script>
+    var  adminAddress;
+
+    $.ajax({
+        url: "http://localhost:8080/dai/getSaveAddress",
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            adminAddress=data.data
+            $("#admin").html("欢迎"+adminAddress);
+            // alert("成功获取保存的session:" +adminAddress)
+            //所有的资产库存情况
+            if(adminAddress!="0x5Ca22f6C1162Da1db405f4AFBD670A50c15c093a"){
+                $("#role").html(` <li><a href="/assetLedger"><i class="icon icon-share-alt"></i> <span>资产台账</span></a></li>
+    <li><a href="/assetManage"><i class="icon icon-share-alt"></i> <span>资产领用与归还</span></a></li>
+  <li><a href="/login"><i class="icon icon-share-alt"></i> <span>退出</span></a></li>`);
+            }
+            $.ajax({
+                url: "http://localhost:8080/dai/getAllGroup",
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+// console.log(document.getElementsByClassName("row")[2].innerHTML)
+                    console.log("所有的资产库存请求:",data)
+var r=0;
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (data.data[i].Status=="1") {
+                            // alert(data.data[i].OwnerAddress===adminAddress)
+                            // alert(typeof (data.data[i].OwnerAddress ))
+                            // alert(typeof (adminAddress ))
+                            // alert(data.data[i].OwnerAddress==adminAddress.toLowerCase())
+
+                            if (data.data[i].OwnerAddress != adminAddress.toLowerCase()) {
+
+
+                                let inserString =
+                                    `
+   <tr>
+                              <td style="text-align: center;">${data.data[i].Id}</td>
+                                <td style="text-align: center;">${data.data[i].Name}</td>
+                                <td style="text-align: center;">${data.data[i].Description}</td>
+                                   <td style="text-align: center;">${data.data[i].OwnerAddress}</td>
+                   <td  style="text-align: center;"  > <button onclick="returns(event)" style="color: red">当前用户不是该资产owner,无法归还</button></td>
+
+                            </tr>
+
+
+      `
+                                let inserStrings = decodeURIComponent(inserString);
+                                $.ajax({
+                                    url: 'http://localhost:8080/table',
+                                    type: 'get',
+                                    datatype: 'json',
+                                    success: function (res) {
+                                        $(".viewStock").html(inserStrings + document.getElementsByClassName("viewStock")[0].innerHTML)
+                                    }
+                                })
+                            }else {
+                                // alert(data.data[i].OwnerAddress)
+                                // alert(adminAddress)
+                                let inserString =
+                                    `
+   <tr>
+                              <td style="text-align: center;">${data.data[i].Id}</td>
+                                <td style="text-align: center;">${data.data[i].Name}</td>
+                                <td style="text-align: center;">${data.data[i].Description}</td>
+                                   <td style="text-align: center;">${data.data[i].OwnerAddress}</td>
+                   <td  style="text-align: center;"  > <button onclick="returns(event)" style="color: red">归还</button></td>
+
+                            </tr>
+
+
+      `
+                                let inserStrings = decodeURIComponent(inserString);
+                                $.ajax({
+                                    url: 'http://localhost:8080/table',
+                                    type: 'get',
+                                    datatype: 'json',
+                                    success: function (res) {
+                                        $(".viewStock").html(inserStrings + document.getElementsByClassName("viewStock")[0].innerHTML)
+                                    }
+                                })
+                            }
+                        }else if(data.data[i].Status=="0"){
+
+                            let inserString =
+                                `
+   <tr>
+                              <td style="text-align: center;">${data.data[i].Id}</td>
+                                <td style="text-align: center;">${data.data[i].Name}</td>
+                                <td style="text-align: center;">${data.data[i].Description}</td>
+                                   <td style="text-align: center;">${data.data[i].OwnerAddress}</td>
+                   <td  style="text-align: center;"  ><button onclick="receive(event)" style="color: green">领用</button>  <button onclick="returns(event)" style="color: red">归还</button></td>
+
+                            </tr>
+
+
+      `
+                            let inserStrings = decodeURIComponent(inserString);
+                            $.ajax({
+                                url: 'http://localhost:8080/table',
+                                type: 'get',
+                                datatype: 'json',
+                                success: function (res) {
+                                    $(".viewStock").html(inserStrings + document.getElementsByClassName("viewStock")[0].innerHTML)
+                                }
+                            })
+                        }
+
+
+                    }
+
+                },
+                error: function (data) {
+                    console.log(data)
+
+                }
+            })
+        }
+    })
+    function receive(event) {
+        // 获取当前按钮所在的 <td> 元素
+        var tdElement = event.target.parentNode;
+
+        // 获取同级的第一个 <td> 的值
+        var firstTdValue = tdElement.parentNode.querySelector('td').innerText;
+
+        $.ajax({
+            url: "http://localhost:8080/dai/getSaveAddress",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                adminAddress=data.data
+            }
+        })
+        // alert("firstTdValue:" +firstTdValue);
+        // alert("appRover:" +adminAddress);
+        $.ajax({
+            url: "http://localhost:8080/dai/receiveAsset",
+            type: "post",
+            data: {"initiator":adminAddress,"id":firstTdValue},
+            dataType: "json",
+            success: function (data) {
+                console.log(data.data)
+                alert("领用资产成功")
+
+            },
+            error: function (data) {
+                console.log(data)
+
+            }
+        })
+    }
+
+
+    //管理员批准资产归还
+    function returns(event){
+        // 获取当前按钮所在的 <td> 元素
+        var tdElement = event.target.parentNode;
+
+        // 获取同级的第一个 <td> 的值
+        var firstTdValue = tdElement.parentNode.querySelector('td').innerText;
+
+        $.ajax({
+            url: "http://localhost:8080/dai/getSaveAddress",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                adminAddress=data.data
+            }
+        })
+        // alert("firstTdValue:" +firstTdValue);
+        // alert("appRover:" +adminAddress);
+        $.ajax({
+            url: "http://localhost:8080/dai/returnsAsset",
+            type: "post",
+            data: {"initiator":adminAddress,"id":firstTdValue},
+            dataType: "json",
+            success: function (data) {
+                console.log(data.data)
+                alert("资产归还成功")
+
+            },
+            error: function (data) {
+                console.log(data)
+
+            }
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

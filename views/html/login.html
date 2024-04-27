@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>登录页面</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="../static/css/matrix-login.css"/>
+    <link href="../static/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<select class="form-control" name="position" style="display: none;" id="notification-position">
+    <option value="top-center" selected>Top Center</option>
+    <!-- <option value="bottom-center" selected>Bottom Center</option>
+    <option value="top-right" selected>Top Right</option> -->
+    <!-- <option value="bottom-right">Bottom Right</option>
+    <option value="top-left">Top Left</option>
+    <option value="bottom-left">Bottom Left</option> -->
+</select>
+</div>
+</div>
+
+<div class="col-lg-2">
+    <div class="for-group">
+        <!-- <label for="close-timeout">Close Timeout</label> -->
+        <select class="form-control" name="position" style="display: none;"  id="close-timeout">
+            <option value="0" selected>Disabled</option>
+            <!-- <option value="1000">1 Sec</option>
+            <option value="3000">3 Sec</option>
+            <option value="5000">5 Sec</option> -->
+        </select>
+    </div>
+</div>
+
+<div class="col-lg-2">
+    <div class="for-group">
+        <!-- <label for="animation">Animation</label> -->
+        <select class="form-control" name="position" style="display: none;" id="animation">
+            <option value="none">None</option>
+            <option value="slide" selected>Slide</option>
+            <option value="fade">Fade</option>
+        </select>
+    </div>
+</div>
+
+<div class="col-lg-2">
+    <div class="for-group">
+        <!-- <label for="animation">Show Buttons</label> -->
+        <div class="custom-control custom-checkbox" style="display: none;">
+            <input type="checkbox" class="custom-control-input" id="show-buttons">
+            <label  class="custom-control-label" for="show-buttons" >Yes/No</label>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-2">
+    <div class="for-group">
+        <!-- <label for="animation">Show Progress Bar</label> -->
+        <div class="custom-control custom-checkbox" style="display: none;">
+            <input type="checkbox" class="custom-control-input" id="show-progress-bar">
+            <label class="custom-control-label" for="show-progress-bar">Yes/No</label>
+        </div>
+    </div>
+</div>
+
+</div>
+<div id="loginbox">
+                <form id="loginform" class="form-vertical">
+    <div class="control-group normal_text"><h3><img src="../static/img/logo.png" alt="Logo"/></h3></div>
+    <div class="control-group">
+        <div class="controls">
+            <div class="main_input_box">
+                <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" id="exampleInputEmail"
+                                                                                  onChange="checkname(this.value)"
+                                                                                  placeholder="用户名"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <div class="main_input_box">
+                <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password"
+                                                                                  id="exampleInputPassword"
+                                                                                  onChange="checkpwd(this.value)"
+                                                                                  placeholder="密码"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions">
+        <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>
+        <span class="pull-right"><a onclick="check()" class="btn btn-success"/> 登录</a></span>
+    </div>
+                </form>
+    <form id="recoverform" action="#" class="form-vertical">
+        <p class="normal_text">请输入正确的用户名密码.</p>
+
+        <div class="controls">
+            <div class="main_input_box">
+                <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text"
+                                                                                      placeholder="E-mail address"/>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <span class="pull-left"><a href="#" class="flip-link btn btn-success"
+                                       id="to-login">&laquo; 返回登录</a></span>
+            <span class="pull-right"><a class="btn btn-info"/></a></span>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script src="../static/js/web3.min.js"></script>
+<script src="../static/js/contractJs/login.js"></script>
+<script src="../static/js/excanvas.min.js"></script>
+<script src="../static/js/jquery.ui.custom.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.flot.min.js"></script>
+<script src="../static/js/jquery.flot.resize.min.js"></script>
+<script src="../static/js/jquery.peity.min.js"></script>
+<script src="../static/js/fullcalendar.min.js"></script>
+<script src="../static/js/matrix.js"></script>
+<script src="../static/js/matrix.dashboard.js"></script>
+<script src="../static/js/jquery.gritter.min.js"></script>
+<script src="../static/js/matrix.interface.js"></script>
+<script src="../static/js/matrix.chat.js"></script>
+<script src="../static/js/jquery.validate.js"></script>
+<script src="../static/js/matrix.form_validation.js"></script>
+<script src="../static/js/jquery.wizard.js"></script>
+<script src="../static/js/jquery.uniform.js"></script>
+<script src="../static/js/select2.min.js"></script>
+<script src="../static/js/matrix.popover.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/matrix.tables.js"></script>
+<script src="../static/js/growl-notification.min.js"></script>
+<script type="text/javascript">
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage (newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-" ) {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+</script>
+</body>
+
+</html>
